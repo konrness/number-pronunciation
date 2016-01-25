@@ -4,7 +4,6 @@ namespace NumberPronunciation\Pronouncer;
 
 
 use NumberPronunciation\IntegerNumber;
-use NumberPronunciation\Pronunciation;
 
 class HexPronouncer implements PronouncerInterface
 {
@@ -66,7 +65,7 @@ class HexPronouncer implements PronouncerInterface
     /**
      * @see http://www.bzarg.com/p/how-to-pronounce-hexadecimal/
      * @param IntegerNumber $number
-     * @return Pronunciation
+     * @return string
      */
     public function pronounce(IntegerNumber $number)
     {

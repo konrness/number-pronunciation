@@ -10,14 +10,13 @@ namespace NumberPronunciation\Pronouncer;
 
 
 use NumberPronunciation\IntegerNumber;
-use NumberPronunciation\Pronunciation;
 
 interface PronouncerInterface
 {
 
     /**
      * @param IntegerNumber $number
-     * @return Pronunciation
+     * @return string
      */
     public function pronounce(IntegerNumber $number);
 

@@ -4,7 +4,6 @@ namespace NumberPronunciation\Pronouncer;
 
 
 use NumberPronunciation\IntegerNumber;
-use NumberPronunciation\Pronunciation;
 
 class DecimalPronouncer implements PronouncerInterface
 {
@@ -47,7 +46,7 @@ class DecimalPronouncer implements PronouncerInterface
 
     /**
      * @param IntegerNumber $number
-     * @return Pronunciation
+     * @return string
      */
     public function pronounce(IntegerNumber $number)
     {
@@ -114,6 +113,7 @@ class DecimalPronouncer implements PronouncerInterface
                 return $this->pronouncePair($triplet, false);
             case $value < 100:
                 return $this->pronouncePair($triplet, true) . ($magnitude ? " " . $magnitude : "");
+            default:
             case $value < 999:
                 $out = self::SINGLE[floor($value / 100)] . " hundred";
 
@@ -121,6 +121,7 @@ class DecimalPronouncer implements PronouncerInterface
                     $out .= " " . $tuplet;
                 }
                 return $out . ($magnitude ? " " . $magnitude : "");
+                break;
         }
     }
 
