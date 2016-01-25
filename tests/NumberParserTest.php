@@ -21,7 +21,7 @@ class NumberParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($isPositive, $integer->isPositive());
 
         $this->assertInternalType("string", $integer->getValue());
-
+        
         // strip prefix from input
         $value = substr($input, strlen($prefix));
 
@@ -51,11 +51,13 @@ class NumberParserTest extends \PHPUnit_Framework_TestCase
         return [
             // decimal
             ["1234",  "", IntegerNumber::BASE_DECIMAL, true],
+            ["+1234",  "+", IntegerNumber::BASE_DECIMAL, true],
             ["-1234", "", IntegerNumber::BASE_DECIMAL, false],
             ["0",     "", IntegerNumber::BASE_DECIMAL, true],
 
             // hexadecimal
             ["0x1234",   "0x", IntegerNumber::BASE_HEX, true],
+            ["+0x1234",   "+0x", IntegerNumber::BASE_HEX, true],
             ["-0x1234",  "0x", IntegerNumber::BASE_HEX, false],
             ["0x0",      "0x", IntegerNumber::BASE_HEX, true],
             ["0X1234",   "0x", IntegerNumber::BASE_HEX, true],
@@ -63,12 +65,14 @@ class NumberParserTest extends \PHPUnit_Framework_TestCase
 
             // octal
             ["01234",    "0", IntegerNumber::BASE_OCTAL, true],
+            ["+01234",    "+0", IntegerNumber::BASE_OCTAL, true],
             ["-01234",   "0", IntegerNumber::BASE_OCTAL, false],
             ["00",       "0", IntegerNumber::BASE_OCTAL, true],
             ["01234567", "0", IntegerNumber::BASE_OCTAL, true],
 
             // binary
             ["0b010101",  "0b", IntegerNumber::BASE_BINARY, true],
+            ["+0b010101",  "+0b", IntegerNumber::BASE_BINARY, true],
             ["-0b010101", "0b", IntegerNumber::BASE_BINARY, false],
             ["0b0",       "0b", IntegerNumber::BASE_BINARY, true],
         ];
@@ -93,6 +97,7 @@ class NumberParserTest extends \PHPUnit_Framework_TestCase
             // binary with invalid ordinals
             ["0b012", IntegerNumber::BASE_BINARY, true],
             ["-0b012", IntegerNumber::BASE_BINARY, false],
+
         ];
     }
 
