@@ -21,7 +21,7 @@ class NumberParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($isPositive, $integer->isPositive());
 
         $this->assertInternalType("string", $integer->getValue());
-        
+
         // strip prefix from input
         $value = substr($input, strlen($prefix));
 
